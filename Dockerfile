@@ -1,9 +1,9 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV ANDROID_HOME="/opt/android-sdk" \
     ANDROID_NDK="/opt/android-ndk" \
     FLUTTER_HOME="/opt/flutter" \
-    JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/"
+    JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
 
 ENV TZ=America/Los_Angeles
 
@@ -130,7 +130,8 @@ RUN mkdir --parents "$HOME/.android/" && \
 
 RUN echo "platforms" && \
     yes | "$ANDROID_HOME"/tools/bin/sdkmanager \
-        "platforms;android-30" \
+        "platforms;android-31" \
+		"platforms;android-30" \
         "platforms;android-29" \
         "platforms;android-28" \
         "platforms;android-27" \
@@ -143,6 +144,7 @@ RUN echo "platform tools" && \
 
 RUN echo "build tools 25-30" && \
     yes | "$ANDROID_HOME"/tools/bin/sdkmanager \
+		"build-tools;31.0.0" \
         "build-tools;30.0.0" "build-tools;30.0.2" \
         "build-tools;29.0.3" "build-tools;29.0.2" \
         "build-tools;28.0.3" "build-tools;28.0.2" \
